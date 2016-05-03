@@ -1,3 +1,4 @@
+from django.apps import apps
 from django.db import models
 from django import forms
 from django.template import Context
@@ -5,7 +6,6 @@ from django.template.loader import get_template
 from django.http import Http404
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
-from django.db.models import get_model
 from django.core.cache import cache
 from django.template.defaultfilters import slugify
 
@@ -62,8 +62,10 @@ class Hierarchy(models.Model):
         return current
 
     def available_pageblocks(self):
-        if hasattr(settings,'PAGEBLOCKS'):
-            return [get_model(*pb.split('.')) for pb in settings.PAGEBLOCKS]
+        if hasattr(settings,'PAGEBLOCKS') and settings.PAGEBLOCKS is not None:
+            models = [apps.get_model(*pb.split('.'))
+                      for pb in settings.PAGEBLOCKS]
+            return models
         else:
             return []
 
