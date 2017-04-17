@@ -1,7 +1,6 @@
 from django.apps import apps
 from django.db import models
 from django import forms
-from django.template import Context
 from django.template.loader import get_template
 from django.http import Http404
 from django.contrib.contenttypes.models import ContentType
@@ -335,8 +334,7 @@ class PageBlock(models.Model):
             t = get_template(getattr(self.content_object,"template_file"))
             d = kwargs
             d['block'] = self.content_object
-            c = Context(d)
-            return t.render(c)
+            return t.render(d)
         else:
             return self.content_object.render()
 
