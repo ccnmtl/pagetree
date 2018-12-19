@@ -1,5 +1,5 @@
-# Copyright (c) 2007, Columbia Center For New Media Teaching And Learning (CCNMTL)
-# All rights reserved.
+# Copyright (c) 2007, Columbia Center For New Media Teaching And
+# Learning (CCNMTL) All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -23,22 +23,25 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name="pagetree",
     version="0.6.4",
     author="Anders Pearson",
     author_email="anders@columbia.edu",
-    url="http://wiki.ccnmtl.columbia.edu/",
+    url="https://github.com/ccnmtl/pagetree",
     description="Tree of Pages helper application",
     long_description="Application for managing trees of pages",
-    install_requires = [],
-    scripts = [],
-    license = "BSD",
-    platforms = ["any"],
+    install_requires=[
+        'django',
+        'six',
+    ],
+    scripts=[],
+    license="BSD",
+    platforms=["any"],
     zip_safe=False,
     packages=['pagetree'],
     test_suite='nose.collector',
     include_package_data=True,
-    )
+)
