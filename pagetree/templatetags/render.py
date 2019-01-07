@@ -1,4 +1,4 @@
-""" render templatetag 
+""" render templatetag
 
 let's us do {% render block %}
 
@@ -10,8 +10,11 @@ request context passed through
 """
 
 from django import template
+from six import string_types
+
 
 register = template.Library()
+
 
 class RenderNode(template.Node):
     def __init__(self, block):
@@ -19,15 +22,16 @@ class RenderNode(template.Node):
 
     def render(self, context):
         b = context[self.block]
-        r = context['request']
         context_dict = {}
+
         for d in context.dicts:
             context_dict.update(d)
         # can only take string keys
-        for k in context_dict.keys():
-            if type(k) != type('') and type(k) != type(u''):
+        for k in list(context_dict.keys()):
+            if not isinstance(k, string_types):
                 del context_dict[k]
         return b.render(**context_dict)
+
 
 @register.tag('render')
 def render(parser, token):
