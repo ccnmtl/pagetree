@@ -27,9 +27,9 @@ from setuptools import setup
 
 setup(
     name="pagetree",
-    version="0.7.0",
+    version="0.7.1",
     author="Anders Pearson",
-    author_email="anders@columbia.edu",
+    author_email="ctl-dev@columbia.edu",
     url="https://github.com/ccnmtl/pagetree",
     description="Tree of Pages helper application",
     long_description="Application for managing trees of pages",

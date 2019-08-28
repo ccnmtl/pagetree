@@ -1,4 +1,4 @@
-0.7.1
+0.7.1  (2019-08-27)
 ===================
 
 * Added missing migrations file
