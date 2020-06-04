@@ -88,7 +88,7 @@ class Hierarchy(models.Model):
 class Section(models.Model):
     label = models.CharField(max_length=256)
     slug = models.SlugField()
-    hierarchy = models.ForeignKey(Hierarchy)
+    hierarchy = models.ForeignKey(Hierarchy, on_delete=models.CASCADE)
     # every hierarchy should have a root section
     # it never gets displayed. just exists to be a parent
     # to the top_level sections.
@@ -328,8 +328,10 @@ class Section(models.Model):
 
 @python_2_unicode_compatible
 class SectionChildren(models.Model):
-    parent = models.ForeignKey(Section, related_name="parent")
-    child = models.ForeignKey(Section, related_name="child")
+    parent = models.ForeignKey(
+        Section, related_name="parent", on_delete=models.CASCADE)
+    child = models.ForeignKey(
+        Section, related_name="child", on_delete=models.CASCADE)
     ordinality = models.PositiveIntegerField(default=1)
 
     class Meta:
@@ -342,11 +344,13 @@ class SectionChildren(models.Model):
 
 @python_2_unicode_compatible
 class PageBlock(models.Model):
-    section = models.ForeignKey(Section)
+    section = models.ForeignKey(
+        Section, on_delete=models.CASCADE)
     ordinality = models.PositiveIntegerField(default=1)
     label = models.CharField(max_length=256, blank=True, null=True)
 
-    content_type = models.ForeignKey(ContentType)
+    content_type = models.ForeignKey(
+        ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     content_object = GenericForeignKey('content_type', 'object_id')
 
