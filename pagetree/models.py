@@ -7,7 +7,6 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.core.cache import cache
 from django.template.defaultfilters import slugify
-from django.utils.encoding import python_2_unicode_compatible
 
 settings = None
 try:
@@ -19,7 +18,6 @@ except ImportError:
     settings = None
 
 
-@python_2_unicode_compatible
 class Hierarchy(models.Model):
     name = models.CharField(max_length=256)
     base_url = models.CharField(max_length=256, default="")
@@ -84,7 +82,6 @@ class Hierarchy(models.Model):
         return self.get_last_leaf(section.get_children()[-1])
 
 
-@python_2_unicode_compatible
 class Section(models.Model):
     label = models.CharField(max_length=256)
     slug = models.SlugField()
@@ -326,7 +323,6 @@ class Section(models.Model):
         return self.get_children()[-1].get_last_leaf()
 
 
-@python_2_unicode_compatible
 class SectionChildren(models.Model):
     parent = models.ForeignKey(
         Section, related_name="parent", on_delete=models.CASCADE)
@@ -342,7 +338,6 @@ class SectionChildren(models.Model):
             self.parent.label, self.ordinality, self.child.label)
 
 
-@python_2_unicode_compatible
 class PageBlock(models.Model):
     section = models.ForeignKey(
         Section, on_delete=models.CASCADE)
