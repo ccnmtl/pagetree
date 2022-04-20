@@ -27,7 +27,7 @@ from setuptools import setup
 
 setup(
     name="pagetree",
-    version="0.7.2",
+    version="0.7.3",
     author="Anders Pearson",
     author_email="ctl-dev@columbia.edu",
     url="https://github.com/ccnmtl/pagetree",
