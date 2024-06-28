@@ -42,6 +42,5 @@ setup(
     platforms=["any"],
     zip_safe=False,
     packages=['pagetree'],
-    test_suite='nose.collector',
     include_package_data=True,
 )
