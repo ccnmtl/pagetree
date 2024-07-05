@@ -1,3 +1,8 @@
+0.7.5
+===================
+
+* Added missing migration change for the Hierarchy model.
+
 0.7.4  (2024-03-20)
 ===================
 
