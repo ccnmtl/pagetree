@@ -27,7 +27,7 @@ from setuptools import setup
 
 setup(
     name="pagetree",
-    version="0.7.4",
+    version="0.7.5",
     author="Anders Pearson",
     author_email="ctl-dev@columbia.edu",
     url="https://github.com/ccnmtl/pagetree",
@@ -35,7 +35,6 @@ setup(
     long_description="Application for managing trees of pages",
     install_requires=[
         'django',
-        'six',
     ],
     scripts=[],
     license="BSD",

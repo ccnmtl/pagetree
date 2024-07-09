@@ -10,7 +10,6 @@ request context passed through
 """
 
 from django import template
-from six import string_types
 
 
 register = template.Library()
@@ -28,7 +27,7 @@ class RenderNode(template.Node):
             context_dict.update(d)
         # can only take string keys
         for k in list(context_dict.keys()):
-            if not isinstance(k, string_types):
+            if not isinstance(k, str):
                 del context_dict[k]
         return b.render(**context_dict)
 
